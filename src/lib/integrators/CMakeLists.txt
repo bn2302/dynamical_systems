@@ -5,6 +5,7 @@ include_directories(
 
 set(library_SRC
     integrator.cc
+    integration_data.cc
     rungekutta4.cc
 )
 

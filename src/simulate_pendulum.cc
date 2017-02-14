@@ -1,25 +1,34 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 #include "pendulum.h"
 #include "double_pendulum.h"
+#include "integrator.h"
 #include "rungekutta4.h"
 
-int main()
+int main(int argc, char *argv[])
 {
-    DynamicalSystem* pendulum = new Pendulum();
-    DynamicalSystem* doublependulum = new DoublePendulum();
+    std::vector<std::string> args(argv, argv+argc);
 
-    Integrator* rk4 = new RungeKutta4(*pendulum, 0.01);
+    DynamicalSystem* system;
 
-    rk4->integrateNSteps(10);
+    if ((args.size() > 1) && (args[1] == "single")) {
+       system = new Pendulum();
+    } else if ((args.size() > 1) && (args[1] == "double")) {
+       system = new DoublePendulum();
+    } else {
+      std::cout << "Usage: program [single | double] \n";
+      std::cout << "for single or double pendulum. \n";
+      return 1;
+    }
 
-    rk4->setDynamicalSystem(*doublependulum);
+    Integrator* integrator = new RungeKutta4(*system, 0.01);
+    IntegrationData data = integrator->integrateNSteps(1000);
+    data.writeData();
 
-    rk4->integrateNSteps(10);
-
-    delete pendulum;
-    delete rk4;
+    delete system;
+    delete integrator;
 
     return 0;
 }

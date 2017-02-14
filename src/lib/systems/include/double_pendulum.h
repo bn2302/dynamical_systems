@@ -8,7 +8,7 @@ class DoublePendulum : public DynamicalSystem
   public:
     DoublePendulum();
 
-    DoublePendulum(double time, std::vector<double>& state,
+    DoublePendulum(double time, std::vector<double> state,
         double length1, double length2, double mass1, double mass2);
 
     ~DoublePendulum() {};

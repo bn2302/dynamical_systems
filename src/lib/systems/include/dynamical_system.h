@@ -5,7 +5,7 @@
 class DynamicalSystem
 {
   public:
-    DynamicalSystem(double time, std::vector<double>& state);
+    DynamicalSystem(double time, std::vector<double> state);
 
     virtual ~DynamicalSystem() = 0;
 

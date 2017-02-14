@@ -1,11 +1,12 @@
 #include <math.h>
+#include <memory>
 #include "pendulum.h"
 
-Pendulum::Pendulum(double time, std::vector<double>& state,double length)
+Pendulum::Pendulum(double time, std::vector<double> state,double length)
   : DynamicalSystem::DynamicalSystem(time, state), length(length) {}
 
 Pendulum::Pendulum() :
-  Pendulum::Pendulum(0.0, *(new std::vector<double> {0, 0.1}), 1.0) {}
+  Pendulum::Pendulum(0.0, std::vector<double> {0, 0.1}, 1.0) {}
 
 std::vector<double> Pendulum::operator()(const double time,
     const std::vector<double>& state) const{

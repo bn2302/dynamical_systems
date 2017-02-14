@@ -8,7 +8,7 @@ class Pendulum : public DynamicalSystem
   public:
     Pendulum();
 
-    Pendulum(double time, std::vector<double>& state, double length);
+    Pendulum(double time, std::vector<double> state, double length);
 
     ~Pendulum() {};
 
