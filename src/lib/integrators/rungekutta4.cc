@@ -1,13 +1,10 @@
-#include <vector>
 #include <algorithm>
 #include <functional>
 
 #include "rungekutta4.h"
 
 RungeKutta4::RungeKutta4(DynamicalSystem& dynamical_system, double h) :
-  Integrator::Integrator(dynamical_system) {
-  this->h = h;
-}
+  Integrator::Integrator(dynamical_system), h(h) {}
 
 RungeKutta4::~RungeKutta4() {};
 
@@ -16,17 +13,16 @@ void RungeKutta4::integrateStep() {
   auto time = dynamical_system.getTime();
   auto state = dynamical_system.getState();
 
-  auto k1 = dynamical_system.right_hand_side(time, state);
+  auto k1 = dynamical_system(time, state);
 
-  auto k2 = dynamical_system.right_hand_side(time+0.5*h,
+  auto k2 = dynamical_system(time+0.5*h,
       add_vectors(state, multiply_by_scalar(k1, 0.5*h)));
 
-  auto k3 = dynamical_system.right_hand_side(time+0.5*h,
+  auto k3 = dynamical_system(time+0.5*h,
       add_vectors(state, multiply_by_scalar(k2, 0.5*h)));
 
-  auto k4 = dynamical_system.right_hand_side(time+h,
+  auto k4 = dynamical_system(time+h,
       add_vectors(state, multiply_by_scalar(k3, h)));
-
 
   for (auto it = state.begin(); it != state.end(); ++it) {
     int index = std::distance(state.begin(), it);

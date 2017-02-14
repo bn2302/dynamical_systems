@@ -23,3 +23,7 @@ void Integrator::integrateNSteps(int n) {
   }
 }
 
+void Integrator::setDynamicalSystem(DynamicalSystem& dynamical_system) {
+  this->dynamical_system = dynamical_system;
+}
+

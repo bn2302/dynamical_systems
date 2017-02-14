@@ -1,10 +1,7 @@
-#include <memory>
 #include "dynamical_system.h"
 
-DynamicalSystem::DynamicalSystem(double time, std::vector<double> state) {
-  setTime(time);
-  setState(state);
-}
+DynamicalSystem::DynamicalSystem(double time, std::vector<double>& state)
+  : time(time), state(state) {}
 
 DynamicalSystem::~DynamicalSystem() {}
 
@@ -12,7 +9,7 @@ const std::vector<double>& DynamicalSystem::getState() const {
   return state;
 }
 
-void DynamicalSystem::setState(const std::vector<double> state) {
+void DynamicalSystem::setState(const std::vector<double>& state) {
   this->state = std::move(state);
 }
 

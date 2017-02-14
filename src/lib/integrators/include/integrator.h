@@ -11,6 +11,8 @@ class Integrator
     virtual ~Integrator() = 0;
     void integrateNSteps(int n);
 
+    void setDynamicalSystem(DynamicalSystem& dynamical_system);
+
   protected:
     DynamicalSystem& dynamical_system;
     virtual void integrateStep() = 0;

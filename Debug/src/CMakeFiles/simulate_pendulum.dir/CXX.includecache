@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../lib/dynamical_system.h
+vector
+-
+
+../lib/integrator.h
+memory
+-
+dynamical_system.h
+../lib/dynamical_system.h
+
+../lib/pendulum.h
+vector
+-
+memory
+-
+dynamical_system.h
+../lib/dynamical_system.h
+
+../lib/rungekutta4.h
+vector
+-
+integrator.h
+../lib/integrator.h
+
+/home/bastian/workspace/dynamical_system/src/simulate_pendulum.cc
+vector
+-
+iostream
+-
+functional
+-
+pendulum.h
+/home/bastian/workspace/dynamical_system/src/pendulum.h
+rungekutta4.h
+/home/bastian/workspace/dynamical_system/src/rungekutta4.h
+
