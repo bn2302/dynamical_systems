@@ -2,10 +2,12 @@
 
 #include "integrator.h"
 
-IntegrationData::IntegrationData() {}
+template<typename T>
+IntegrationData<T>::IntegrationData() {}
 
-void IntegrationData::push_back(double time_point,
-    const std::vector<double>& state) {
+template<typename T>
+void IntegrationData<T>::push_back(T time_point,
+    const std::vector<T>& state) {
 
   timepoints.push_back(time_point);
 
@@ -13,7 +15,8 @@ void IntegrationData::push_back(double time_point,
 
 }
 
-void IntegrationData::writeData() {
+template<typename T>
+void IntegrationData<T>::writeData() {
 
     for(auto i = timepoints.begin(); i != timepoints.end(); ++i) {
 
@@ -28,5 +31,4 @@ void IntegrationData::writeData() {
     }
 
 }
-
 

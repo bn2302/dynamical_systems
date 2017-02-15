@@ -4,17 +4,20 @@
 #include "integrator.h"
 
 
-Integrator::Integrator(DynamicalSystem& sys) : dynamical_system(sys) {}
+template<typename T>
+Integrator<T>::Integrator(DynamicalSystem<T> &sys) : dynamical_system(sys) {}
 
 
-Integrator::~Integrator() {};
+template<typename T>
+Integrator<T>::~Integrator() {};
 
 
-IntegrationData Integrator::integrateNSteps(int n) {
+template<typename T>
+IntegrationData<T> Integrator<T>::integrateNSteps(int n) {
 
-  IntegrationData data;
+  IntegrationData<T> data;
 
-  std::vector<double> state = dynamical_system.getState();
+  std::vector<T> state = dynamical_system.getState();
   auto time = dynamical_system.getTime();
   data.push_back(time, state);
 
@@ -29,30 +32,33 @@ IntegrationData Integrator::integrateNSteps(int n) {
 }
 
 
-void Integrator::setDynamicalSystem(DynamicalSystem& dynamical_system) {
-  this->dynamical_system = dynamical_system;
+template<typename T>
+void Integrator<T>::setDynamicalSystem(DynamicalSystem<T> &sys) {
+  this->dynamical_system = sys;
 }
 
 
-std::vector<double> Integrator::multiply_by_scalar(
-    const std::vector<double>& vec,
-    double scalar) {
+template<typename T>
+std::vector<T> Integrator<T>::multiply_by_scalar(
+    const std::vector<T> &vec,
+    T scalar) {
 
-  std::vector<double> vec_out;
+  std::vector<T> vec_out;
   std::transform(vec.begin(), vec.end(), std::back_inserter(vec_out),
-      [scalar](double d1) {return (d1 * scalar);});
+      [scalar](T d1) {return (d1 * scalar);});
 
   return vec_out;
 }
 
 
-std::vector<double> Integrator::add_vectors(
-    const std::vector<double>& vec1,
-    const std::vector<double>& vec2) {
+template<typename T>
+std::vector<T> Integrator<T>::add_vectors(
+    const std::vector<T> &vec1,
+    const std::vector<T> &vec2) {
 
-  std::vector<double> vec_out;
+  std::vector<T> vec_out;
   std::transform(vec1.begin(), vec1.end(), vec2.begin(),
-      std::back_inserter(vec_out), [](double d1, double d2) {return d1 + d2;});
+      std::back_inserter(vec_out), [](T d1, T d2) {return d1 + d2;});
 
   return vec_out;
 }

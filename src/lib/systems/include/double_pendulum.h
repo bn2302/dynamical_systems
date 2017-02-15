@@ -1,6 +1,7 @@
 #ifndef LIB_DOUBLE_PENDULUM_H_
 #define LIB_DOUBLE_PENDULUM_H_
 // © Bastian Niebel
+
 #include <vector>
 #include "dynamical_system.h"
 
@@ -24,19 +25,20 @@
 //    delete pend;
 //
 
-class DoublePendulum : public DynamicalSystem
+template<typename T>
+class DoublePendulum : public DynamicalSystem<T>
 {
   public:
 
-//  Initializes the double pendulum with the passed arguments
+//  Initializes the T pendulum with the passed arguments
 //
 //  Arguments:
-//    time:
+//    time
 //    state:
 //
 //
-    DoublePendulum(double time, std::vector<double> state,
-        double length1, double length2, double mass1, double mass2);
+    DoublePendulum(T time, std::vector<T> state,
+        T length1, T length2, T mass1, T mass2);
 
 //  Initializes the double pendulum with default values
 //    time : 0
@@ -50,16 +52,21 @@ class DoublePendulum : public DynamicalSystem
 
     ~DoublePendulum() {};
 
-    std::vector<double> operator()(const double time,
-        const std::vector<double>& state) const;
+    std::vector<T> operator()(const T time,
+        const std::vector<T>& state) const;
 
   private:
-    const double gravity_of_earth = 9.81;
-    double length1;
-    double length2;
-    double mass1;
-    double mass2;
+    const T gravity_of_earth = 9.81;
+    T length1;
+    T length2;
+    T mass1;
+    T mass2;
 };
+
+template class DoublePendulum<float>;
+
+template class DoublePendulum<double>;
+
 
 #endif /* ifndef LIB_PENDULUM_H_ */
 

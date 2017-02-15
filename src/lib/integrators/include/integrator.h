@@ -1,11 +1,10 @@
 #ifndef LIB_INTEGRATOR_H_
 #define LIB_INTEGRATOR_H_
 
-
 #include <vector>
 #include "dynamical_system.h"
 
-
+template<typename T>
 class IntegrationData
 {
 
@@ -13,48 +12,57 @@ class IntegrationData
 
     IntegrationData();
 
-    void push_back(double time_point, const std::vector<double>& state);
+    void push_back(T time_point, const std::vector<T>& state);
 
     void writeData();
 
 
   private:
 
-    std::vector<double> timepoints;
+    std::vector<T> timepoints;
 
-    std::vector<std::vector<double>> states_over_time;
+    std::vector<std::vector<T>> states_over_time;
 
 };
 
+template class IntegrationData<float>;
+
+template class IntegrationData<double>;
 
 
+template<typename T>
 class Integrator
 {
 
   public:
 
-    Integrator(DynamicalSystem& dynamical_system);
+    Integrator(DynamicalSystem<T> &sys);
 
     virtual ~Integrator() = 0;
 
-    IntegrationData integrateNSteps(int n);
+    IntegrationData<T> integrateNSteps(int n);
 
-    void setDynamicalSystem(DynamicalSystem& dynamical_system);
+    void setDynamicalSystem(DynamicalSystem<T>& sys);
 
 
   protected:
 
-    DynamicalSystem& dynamical_system;
+    DynamicalSystem<T> &dynamical_system;
 
     virtual void integrateStep() = 0;
 
-    static std::vector<double> multiply_by_scalar(
-        const std::vector<double>& vec, double scalar);
+    static std::vector<T> multiply_by_scalar(
+      const std::vector<T> &vec, T scalar);
 
-    static std::vector<double> add_vectors(const std::vector<double>& vec1,
-        const std::vector<double>& vec2);
+    static std::vector<T> add_vectors(const std::vector<T> &vec1,
+      const std::vector<T> &vec2);
+
 
 };
+
+template class Integrator<float>;
+
+template class Integrator<double>;
 
 
 #endif /* ifndef LIB_INTEGRATOR_H_ */

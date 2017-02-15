@@ -1,11 +1,12 @@
 #include <vector>
-#include "dynamical_system.h"
-#include "double_pendulum.h"
 #include "gtest/gtest.h"
+#include "double_pendulum.h"
 
-TEST(double_pendulum_test, integration_step_test)
+
+TEST(dynamical_systems, double_pendulum_double_test)
 {
-  DoublePendulum* pendulum = new DoublePendulum(1.0,
+
+  DoublePendulum<double>* pendulum = new DoublePendulum<double>(1.0,
       std::vector<double> {1.2, 0.2, -2.3, 2.4}, .2, .3, .1, .3);
 
   auto calculated_result= pendulum->operator()(
@@ -24,6 +25,5 @@ TEST(double_pendulum_test, integration_step_test)
   }
 
   delete pendulum;
-
 
 }

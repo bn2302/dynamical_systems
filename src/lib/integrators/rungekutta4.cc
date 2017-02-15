@@ -1,14 +1,20 @@
 #include "rungekutta4.h"
 
 
-RungeKutta4::RungeKutta4(DynamicalSystem& dynamical_system, double step_size)
-  : Integrator::Integrator(dynamical_system), step_size(step_size) {}
+template<typename T>
+RungeKutta4<T>::RungeKutta4(DynamicalSystem<T> &sys, T step_size)
+  : Integrator<T>::Integrator(sys), step_size(step_size) {}
 
-RungeKutta4::~RungeKutta4() {};
 
-void RungeKutta4::integrateStep() {
+template<typename T>
+RungeKutta4<T>::~RungeKutta4() {};
 
-  auto time = dynamical_system.getTime();
+
+template<typename T>
+void RungeKutta4<T>::integrateStep() {
+
+  auto time =  dynamical_system.getTime();
+
   auto state = dynamical_system.getState();
 
   auto k1 = dynamical_system(time, state);
@@ -23,14 +29,16 @@ void RungeKutta4::integrateStep() {
       add_vectors(state, multiply_by_scalar(k3, step_size)));
 
   for (auto it = state.begin(); it != state.end(); ++it) {
+
     int index = std::distance(state.begin(), it);
+
     *it += step_size/6*k1[index] + step_size/3*k2[index]
       + step_size/3*k3[index] + step_size/6*k4[index];
+
   }
 
   dynamical_system.setState(state);
+
   dynamical_system.setTime(time+step_size);
 
 }
-
-

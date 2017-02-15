@@ -3,22 +3,28 @@
 #include <vector>
 #include "dynamical_system.h"
 
-class Pendulum : public DynamicalSystem
+
+template<typename T>
+class Pendulum : public DynamicalSystem<T>
 {
   public:
     Pendulum();
 
-    Pendulum(double time, std::vector<double> state, double length);
+    Pendulum(T time, std::vector<T> state, T length);
 
     ~Pendulum() {};
 
-    std::vector<double> operator() (const double time,
-        const std::vector<double>& state) const;
+    std::vector<T> operator() (const T time,
+        const std::vector<T>& state) const;
 
   private:
-    const double gravity_of_earth = 9.81;
-    double length;
+    const T gravity_of_earth = 9.81;
+    T length;
 };
+
+
+template class Pendulum<float>;
+template class Pendulum<double>;
 
 #endif /* ifndef LIB_PENDULUM_H_ */
 
