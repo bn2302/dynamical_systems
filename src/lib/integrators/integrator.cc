@@ -15,10 +15,10 @@ IntegrationData Integrator::integrateNSteps(int n) {
   IntegrationData data;
 
   std::vector<double> state = dynamical_system.getState();
-  double time = dynamical_system.getTime();
+  auto time = dynamical_system.getTime();
   data.push_back(time, state);
 
-  for (int i = 0; i < n; ++i) {
+  for (auto i = 0; i < n; ++i) {
     integrateStep();
     state = dynamical_system.getState();
     time = dynamical_system.getTime();

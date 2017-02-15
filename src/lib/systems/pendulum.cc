@@ -2,7 +2,7 @@
 #include <memory>
 #include "pendulum.h"
 
-Pendulum::Pendulum(double time, std::vector<double> state,double length)
+Pendulum::Pendulum(double time, std::vector<double> state, double length)
   : DynamicalSystem::DynamicalSystem(time, state), length(length) {}
 
 Pendulum::Pendulum() :

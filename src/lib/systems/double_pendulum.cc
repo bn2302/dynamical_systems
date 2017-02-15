@@ -19,9 +19,9 @@ std::vector<double> DoublePendulum::operator()(const double time,
 
   std::vector<double> d_state (state.size(), 0);
 
-  double total_mass = mass1 + mass2;
-  double cos_delta_phi = cos(state[0] - state[2]);
-  double sin_delta_phi = sin(state[0] - state[2]);
+  auto total_mass = mass1 + mass2;
+  auto cos_delta_phi = cos(state[0] - state[2]);
+  auto sin_delta_phi = sin(state[0] - state[2]);
 
   d_state[0] = state[1];
   d_state[1] = (mass2*cos_delta_phi*(length1*sin_delta_phi*state[1]*state[1]

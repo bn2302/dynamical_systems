@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <memory>
 
 #include "pendulum.h"
 #include "double_pendulum.h"
@@ -15,6 +16,7 @@ int main(int argc, char *argv[])
 
     if ((args.size() > 1) && (args[1] == "single")) {
        system = new Pendulum();
+
     } else if ((args.size() > 1) && (args[1] == "double")) {
        system = new DoublePendulum();
     } else {
@@ -29,6 +31,5 @@ int main(int argc, char *argv[])
 
     delete system;
     delete integrator;
-
     return 0;
 }

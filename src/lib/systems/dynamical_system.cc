@@ -1,3 +1,4 @@
+// © Bastian Niebel
 #include "dynamical_system.h"
 
 
