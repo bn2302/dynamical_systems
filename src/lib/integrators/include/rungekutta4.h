@@ -4,12 +4,13 @@
 
 #include "integrator.h"
 
-
-class RungeKutta4 : public Integrator
+template <typename T>
+class RungeKutta4 : public Integrator<T>
 {
+
   public:
 
-    RungeKutta4(DynamicalSystem& dynamical_system, double step_size);
+    RungeKutta4(DynamicalSystem<T> &sys, T step_size);
 
     ~RungeKutta4();
 
@@ -19,9 +20,19 @@ class RungeKutta4 : public Integrator
 
   private:
 
-    double step_size;
+    T step_size;
+
+    using Integrator<T>::dynamical_system;
+
+    using Integrator<T>::add_vectors;
+
+    using Integrator<T>::multiply_by_scalar;
 
 };
+
+template class RungeKutta4<float>;
+
+template class RungeKutta4<double>;
 
 
 #endif /* ifndef LIB_ODE45_H_ */

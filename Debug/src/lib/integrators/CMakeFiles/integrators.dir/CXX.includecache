@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/lib/integrators/include/integrator.h
+vector
+-
+dynamical_system.h
+../src/lib/integrators/include/dynamical_system.h
+
+../src/lib/integrators/include/rungekutta4.h
+integrator.h
+../src/lib/integrators/include/integrator.h
+
+../src/lib/systems/include/dynamical_system.h
+vector
+-
+
+/home/bastian/workspace/dynamical_systems/src/lib/integrators/integration_data.cc
+iostream
+-
+integrator.h
+/home/bastian/workspace/dynamical_systems/src/lib/integrators/integrator.h
+
+/home/bastian/workspace/dynamical_systems/src/lib/integrators/integrator.cc
+algorithm
+-
+functional
+-
+integrator.h
+/home/bastian/workspace/dynamical_systems/src/lib/integrators/integrator.h
+
+/home/bastian/workspace/dynamical_systems/src/lib/integrators/rungekutta4.cc
+rungekutta4.h
+/home/bastian/workspace/dynamical_systems/src/lib/integrators/rungekutta4.h
+

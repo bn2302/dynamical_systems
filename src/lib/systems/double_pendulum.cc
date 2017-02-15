@@ -1,23 +1,26 @@
 #include <math.h>
 #include "double_pendulum.h"
 
-DoublePendulum::DoublePendulum(double time, std::vector<double> state,
-    double length1, double length2, double mass1, double mass2)
-  : DynamicalSystem::DynamicalSystem(time, state), length1(length1),
+
+template<typename T>
+DoublePendulum<T>::DoublePendulum(T time, std::vector<T> state,
+    T length1, T length2, T mass1, T mass2)
+  : DynamicalSystem<T>::DynamicalSystem(time, state), length1(length1),
     length2(length2), mass1(mass1), mass2(mass2) {}
 
-DoublePendulum::DoublePendulum()
+
+template<typename T>
+DoublePendulum<T>::DoublePendulum()
   : DoublePendulum::DoublePendulum(0.0,
-      std::vector<double> {0, 0.1, 0, 0.1},
+      std::vector<T> {0, 0.1, 0, 0.1},
       1.0, 1.0, 1.0, 1.0) {}
 
 
-std::vector<double> DoublePendulum::operator()(const double time,
-    const std::vector<double>& state) const{
+template<typename T>
+std::vector<T> DoublePendulum<T>::operator()(const T time,
+    const std::vector<T>& state) const{
 
-  // state is phi1 dphi1 phi2 dphi2
-
-  std::vector<double> d_state (state.size(), 0);
+  std::vector<T> d_state (state.size(), 0);
 
   auto total_mass = mass1 + mass2;
   auto cos_delta_phi = cos(state[0] - state[2]);

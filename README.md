@@ -1,5 +1,12 @@
 # Dynamical simulator in C++
 
-C++11 implementation of a 4th order Runga Kutta integrator.
+Implementation of a dynamical systems simulator in C++11.
 
+The dynamical systems inherit from the base class DynamicalSystem.
+
+Integration is performed using a RungeKutta
+
+Dependencies:
+	cmake
+	goggletest
 

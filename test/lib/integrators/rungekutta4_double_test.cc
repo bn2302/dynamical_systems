@@ -5,10 +5,10 @@
 #include "pendulum.h"
 #include "gtest/gtest.h"
 
-TEST(rungekutta4_test, integration_step_test)
+TEST(rungekutta4_test, integration_step_double_test)
 {
-  DynamicalSystem* pendulum = new Pendulum();
-  Integrator* rk4 = new RungeKutta4(*pendulum, 1);
+  DynamicalSystem<double>* pendulum = new Pendulum<double>();
+  Integrator<double>* rk4 = new RungeKutta4<double>(*pendulum, 1);
 
   rk4->integrateNSteps(1);
 

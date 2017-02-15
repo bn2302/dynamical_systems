@@ -14,7 +14,7 @@ set(COMMON_INCLUDES
 	${PROJECT_SOURCE_DIR}/src/lib/integrators/include 
 	${PROJECT_SOURCE_DIR}/src/lib/systems/include
 	)
-add_subdirectory(src)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src)
 
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
@@ -31,27 +31,5 @@ if(result)
 endif()
 
 enable_testing()
-set(PROJECT_TEST_NAME ${PROJECT_NAME_STR}_test)
+add_subdirectory(${PROJECT_SOURCE_DIR}/test)
 
-add_subdirectory(
-	${CMAKE_BINARY_DIR}/googletest-src
-	${CMAKE_BINARY_DIR}/googletest-build
-	)
-
-include_directories(
-	${GTEST_INCLUDE_DIRS} ${COMMON_INCLUDES} 
-	${gtest_SOURCE_DIR}/include
-	)
-
-file(GLOB TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/test/*.cc)
-
-add_executable(${PROJECT_TEST_NAME} ${TEST_SRC_FILES})
-
-target_link_libraries(${PROJECT_TEST_NAME}
-	gtest_main
-	integrators
-	systems
-	)
-target_link_libraries(${PROJECT_TEST_NAME} ${CMAKE_THREAD_LIBS_INIT})
-
-add_test(test1 ${PROJECT_TEST_NAME})

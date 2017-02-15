@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/lib/systems/include/double_pendulum.h
+vector
+-
+dynamical_system.h
+../src/lib/systems/include/dynamical_system.h
+
+../src/lib/systems/include/dynamical_system.h
+vector
+-
+
+../src/lib/systems/include/pendulum.h
+vector
+-
+dynamical_system.h
+../src/lib/systems/include/dynamical_system.h
+
+/home/bastian/workspace/dynamical_systems/src/lib/systems/double_pendulum.cc
+math.h
+-
+double_pendulum.h
+/home/bastian/workspace/dynamical_systems/src/lib/systems/double_pendulum.h
+
+/home/bastian/workspace/dynamical_systems/src/lib/systems/dynamical_system.cc
+dynamical_system.h
+/home/bastian/workspace/dynamical_systems/src/lib/systems/dynamical_system.h
+
+/home/bastian/workspace/dynamical_systems/src/lib/systems/pendulum.cc
+math.h
+-
+memory
+-
+pendulum.h
+/home/bastian/workspace/dynamical_systems/src/lib/systems/pendulum.h
+
