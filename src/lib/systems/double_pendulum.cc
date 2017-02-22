@@ -2,25 +2,26 @@
 #include "double_pendulum.h"
 
 
-template<typename T>
-DoublePendulum<T>::DoublePendulum(T time, std::vector<T> state,
-    T length1, T length2, T mass1, T mass2)
-  : DynamicalSystem<T>::DynamicalSystem(time, state), length1(length1),
-    length2(length2), mass1(mass1), mass2(mass2) {}
+DoublePendulum::DoublePendulum(double initial_time,
+                               std::vector<double> initial_state,
+                               double length1, double length2,
+                               double mass1, double mass2)
+            : DynamicalSystem::DynamicalSystem(initial_time, initial_state),
+              length1(length1), length2(length2), mass1(mass1), mass2(mass2) {}
 
 
-template<typename T>
-DoublePendulum<T>::DoublePendulum()
+DoublePendulum::DoublePendulum()
   : DoublePendulum::DoublePendulum(0.0,
-      std::vector<T> {0, 0.1, 0, 0.1},
+      std::vector<double> {0, 0.1, 0, 0.1},
       1.0, 1.0, 1.0, 1.0) {}
 
+// Actual implementation, the right hand side has been formulated from the
+// Lagrangian (see https://en.wikipedia.org/wiki/Double_pendulum)
+// Here we allow for different masses and length of the two pendulums.
+std::vector<double> DoublePendulum::operator()(const double time,
+    const std::vector<double>& state) const {
 
-template<typename T>
-std::vector<T> DoublePendulum<T>::operator()(const T time,
-    const std::vector<T>& state) const{
-
-  std::vector<T> d_state (state.size(), 0);
+  std::vector<double> d_state (state.size(), 0);
 
   auto total_mass = mass1 + mass2;
   auto cos_delta_phi = cos(state[0] - state[2]);
@@ -44,3 +45,4 @@ std::vector<T> DoublePendulum<T>::operator()(const T time,
   return d_state;
 
 }
+

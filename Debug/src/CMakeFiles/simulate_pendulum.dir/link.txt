@@ -1,1 +1,0 @@
-/usr/bin/c++   -std=c++11 -g -Wall -g   CMakeFiles/simulate_pendulum.dir/simulate_pendulum.cc.o  -o simulate_pendulum -rdynamic lib/integrators/libintegrators.so lib/systems/libsystems.so -Wl,-rpath,/home/bastian/workspace/dynamical_systems/Debug/src/lib/integrators:/home/bastian/workspace/dynamical_systems/Debug/src/lib/systems: 

@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 
+
+#include "dynamical_system.h"
 #include "pendulum.h"
 #include "double_pendulum.h"
 #include "integrator.h"
@@ -12,15 +14,17 @@ int main(int argc, char *argv[])
 {
     std::vector<std::string> args(argv, argv+argc);
 
-    DynamicalSystem<double> *system;
+    DynamicalSystem* system = nullptr;
+	RungeKutta4<DynamicalSystem,
+		std::vector<double>> integrator = {0.1};
 
     if ((args.size() > 1) && (args[1] == "single")) {
 
-       system = new Pendulum<double>();
+        system = new Pendulum();
 
     } else if ((args.size() > 1) && (args[1] == "double")) {
 
-       system = new DoublePendulum<double>();
+        system = new DoublePendulum();
 
     } else {
 
@@ -31,12 +35,11 @@ int main(int argc, char *argv[])
 
     }
 
-    Integrator<double> *integrator = new RungeKutta4<double>(*system, 0.01);
-    IntegrationData<double> data = integrator->integrateNSteps(1000);
-    data.writeData();
+    auto data = integrator.integrateNSteps(*system, system->getInitialState(),
+        system->getInitialTime(), 100);
+    integration::writeIntegrationData(data);
 
     delete system;
-    delete integrator;
 
     return 0;
 

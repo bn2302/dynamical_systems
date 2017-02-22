@@ -1,1 +1,0 @@
-/usr/bin/c++  -fPIC -std=c++11 -g -Wall -g  -shared -Wl,-soname,libsystems.so -o libsystems.so CMakeFiles/systems.dir/dynamical_system.cc.o CMakeFiles/systems.dir/pendulum.cc.o CMakeFiles/systems.dir/double_pendulum.cc.o 

@@ -1,3 +1,5 @@
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
 add_subdirectory(
 	${CMAKE_BINARY_DIR}/googletest-src
 	${CMAKE_BINARY_DIR}/googletest-build
@@ -16,7 +18,6 @@ add_executable(test_dynamical_system ${SRCS})
 target_link_libraries(test_dynamical_system
 	gtest_main
 	systems
-	integrators
 )
 
 add_test(TARGETS test_dynamical_system)

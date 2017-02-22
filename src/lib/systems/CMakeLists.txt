@@ -1,5 +1,5 @@
 include_directories(
-	${CMAKE_CURRENT_SOURCE_DIR}/include
+	${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 set(library_SRC
@@ -8,10 +8,5 @@ set(library_SRC
     double_pendulum.cc
 )
 
-add_library (systems SHARED ${library_SRC})
+add_library (systems STATIC ${library_SRC})
 
-
-install(TARGETS systems
-	RUNTIME DESTINATION bin
-        LIBRARY DESTINATION bin
-)

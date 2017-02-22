@@ -1,6 +1,6 @@
 include_directories(
-	${CMAKE_CURRENT_SOURCE_DIR}/lib/integrators/include
-	${CMAKE_CURRENT_SOURCE_DIR}/lib/systems/include
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/integrators/
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/systems/
 )
 
 
@@ -10,8 +10,11 @@ set(simulate_SRC
 
 add_executable (simulate_pendulum ${simulate_SRC})
 
+link_directories(
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/integrators/
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/systems/
+)
 target_link_libraries(simulate_pendulum
-    integrators
     systems
 )
 

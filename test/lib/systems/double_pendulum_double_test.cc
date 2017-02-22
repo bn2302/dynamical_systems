@@ -6,11 +6,11 @@
 TEST(dynamical_systems, double_pendulum_double_test)
 {
 
-  DoublePendulum<double>* pendulum = new DoublePendulum<double>(1.0,
-      std::vector<double> {1.2, 0.2, -2.3, 2.4}, .2, .3, .1, .3);
+  DoublePendulum pendulum = {1.0,
+      std::vector<double> {1.2, 0.2, -2.3, 2.4}, .2, .3, .1, .3};
 
-  auto calculated_result= pendulum->operator()(
-      pendulum->getTime(), pendulum->getState());
+  auto calculated_result = pendulum(pendulum.getInitialTime(),
+                                    pendulum.getInitialState());
 
   std::vector<double> expected_result {0.2, -51.8975137806604, 2.4,
     -8.02464300367009};
@@ -23,7 +23,5 @@ TEST(dynamical_systems, double_pendulum_double_test)
       << "Vectors calculated_resultand result differ at indecalculated_result"
       << i;
   }
-
-  delete pendulum;
 
 }

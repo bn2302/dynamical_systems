@@ -1,36 +1,32 @@
-// © Bastian Niebel
 #include "dynamical_system.h"
 
+DynamicalSystem::DynamicalSystem(double initial_time,
+                                    std::vector<double>& initial_state)
+        : initial_time(initial_time), initial_state(initial_state) {}
 
-template<typename T>
-DynamicalSystem<T>::DynamicalSystem(T time, std::vector<T> state)
-  : time(time), state(state) {}
-
-template<typename T>
-DynamicalSystem<T>::~DynamicalSystem() {}
+DynamicalSystem::~DynamicalSystem() {}
 
 
-template<typename T>
-const std::vector<T>& DynamicalSystem<T>::getState() const {
-  return state;
+const std::vector<double>& DynamicalSystem::getInitialState() const
+{
+  return initial_state;
 }
 
 
-template<typename T>
-void DynamicalSystem<T>::setState(const std::vector<T>& state) {
-  this->state = std::move(state);
+void DynamicalSystem::setInitialState(const std::vector<double>& initial_state)
+{
+  this->initial_state = initial_state;
 }
 
 
-template<typename T>
-T DynamicalSystem<T>::getTime() const {
-  return time;
+double DynamicalSystem::getInitialTime() const {
+  return initial_time;
 }
 
 
-template<typename T>
-void DynamicalSystem<T>::setTime(const T time) {
-  this->time = time;
+void DynamicalSystem::setInitialTime(const double initial_time)
+{
+  this->initial_time = initial_time;
 }
 
 

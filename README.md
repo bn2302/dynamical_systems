@@ -1,12 +1,12 @@
 # Dynamical simulator in C++
 
-Implementation of a dynamical systems simulator in C++11.
+C++14 implementation of a template based integrator class, which takes function
+pointers or classes with an overloaded () operator as a argument. The function
+pointers or classes () method implements the dynamical system.
 
-The dynamical systems inherit from the base class DynamicalSystem.
+As an example a single and double pendulum is implemented.
 
-Integration is performed using a RungeKutta
+Tests have been implemented using googletest
 
-Dependencies:
-	cmake
-	goggletest
+Compiled on  Windows 10 x64 using Visual Studio 2015
 

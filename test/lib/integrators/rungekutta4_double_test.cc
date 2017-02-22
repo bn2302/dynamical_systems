@@ -7,16 +7,16 @@
 
 TEST(rungekutta4_test, integration_step_double_test)
 {
-  DynamicalSystem<double>* pendulum = new Pendulum<double>();
-  Integrator<double>* rk4 = new RungeKutta4<double>(*pendulum, 1);
+  auto pendulum = new Pendulum();
+  auto integrator = new integration::RungeKutta4<DynamicalSystem,
+    std::vector<double>>(1);
 
-  rk4->integrateNSteps(1);
+  auto data = integrator->integrateNSteps(*pendulum, pendulum->getInitialState(),
+      pendulum->getInitialTime(), 1);
 
-  auto calculated_result= pendulum->operator()(
-      pendulum->getTime(), pendulum->getState());
+  std::vector<double> expected_result{ -0.063431883515118137, 0.0096205109222267937};
 
-  std::vector<double> expected_result {0.00962051092222679, 0.621849568726504};
-
+  auto calculated_result = data[1].state;
   ASSERT_EQ(calculated_result.size(), expected_result.size())
     << "Vectors calculated_resultand result are of unequal length";
 
@@ -27,6 +27,6 @@ TEST(rungekutta4_test, integration_step_double_test)
   }
 
   delete pendulum;
-  delete rk4;
+  delete integrator;
 
 }
