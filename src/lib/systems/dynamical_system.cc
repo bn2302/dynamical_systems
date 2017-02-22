@@ -1,7 +1,7 @@
 #include "dynamical_system.h"
 
 DynamicalSystem::DynamicalSystem(double initial_time,
-                                    std::vector<double>& initial_state)
+                                 std::vector<double> initial_state)
         : initial_time(initial_time), initial_state(initial_state) {}
 
 DynamicalSystem::~DynamicalSystem() {}
@@ -13,7 +13,7 @@ const std::vector<double>& DynamicalSystem::getInitialState() const
 }
 
 
-void DynamicalSystem::setInitialState(const std::vector<double>& initial_state)
+void DynamicalSystem::setInitialState(const std::vector<double> initial_state)
 {
   this->initial_state = initial_state;
 }

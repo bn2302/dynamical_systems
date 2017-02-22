@@ -8,5 +8,8 @@ As an example a single and double pendulum is implemented.
 
 Tests have been implemented using googletest
 
-Compiled on  Windows 10 x64 using Visual Studio 2015
+Build has been tested with Windows 10 x64: 
+- using Visual Studio 2015
+- TDM-GCC64 5.1.0 with cygwin make
+
 

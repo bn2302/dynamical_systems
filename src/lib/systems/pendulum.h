@@ -32,7 +32,7 @@ class Pendulum : public DynamicalSystem
 //    initial_time: initial_time
 //    initial_state: phi, d_phi
 //    length: length of the first pendulum
-    Pendulum(double initial_time, std::vector<double>& initial_state,
+    Pendulum(double initial_time, std::vector<double> initial_state,
              double length);
 
 //  Initializes the pendulum with default values

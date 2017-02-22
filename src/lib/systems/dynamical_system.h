@@ -13,7 +13,7 @@
 class DynamicalSystem
 {
   public:
-    DynamicalSystem(double initial_time, std::vector<double>& initial_state);
+    DynamicalSystem(double initial_time, std::vector<double> initial_state);
 
     virtual ~DynamicalSystem() = 0;
 
@@ -21,7 +21,7 @@ class DynamicalSystem
         (const double time, const std::vector<double>& state) const = 0;
 
     const std::vector<double>& getInitialState() const;
-    void setInitialState(const std::vector<double>& initial_state);
+    void setInitialState(const std::vector<double> initial_state);
 
     double getInitialTime() const;
     void setInitialTime(double initial_time);
