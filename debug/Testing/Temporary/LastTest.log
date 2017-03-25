@@ -1,0 +1,35 @@
+Start testing: Mar 25 14:44 CET
+----------------------------------------------------------
+1/1 Testing: TARGETS
+1/1 Test: TARGETS
+Command: "/home/bastian/workspace/dynamical_systems/debug/test/test_dynamical_system"
+Directory: /home/bastian/workspace/dynamical_systems/debug/test
+"TARGETS" start time: Mar 25 14:44 CET
+Output:
+----------------------------------------------------------
+[==========] Running 3 tests from 2 test cases.
+[----------] Global test environment set-up.
+[----------] 2 tests from dynamical_systems
+[ RUN      ] dynamical_systems.pendulum_double_test
+[       OK ] dynamical_systems.pendulum_double_test (0 ms)
+[ RUN      ] dynamical_systems.double_pendulum_double_test
+[       OK ] dynamical_systems.double_pendulum_double_test (0 ms)
+[----------] 2 tests from dynamical_systems (0 ms total)
+
+[----------] 1 test from rungekutta4_test
+[ RUN      ] rungekutta4_test.integration_step_double_test
+[       OK ] rungekutta4_test.integration_step_double_test (0 ms)
+[----------] 1 test from rungekutta4_test (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 3 tests from 2 test cases ran. (1 ms total)
+[  PASSED  ] 3 tests.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TARGETS" end time: Mar 25 14:44 CET
+"TARGETS" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Mar 25 14:44 CET

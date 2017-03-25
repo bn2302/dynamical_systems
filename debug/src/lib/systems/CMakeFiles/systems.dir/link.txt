@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsystems.a  CMakeFiles/systems.dir/dynamical_system.cc.o CMakeFiles/systems.dir/pendulum.cc.o CMakeFiles/systems.dir/double_pendulum.cc.o
+/usr/bin/ranlib libsystems.a

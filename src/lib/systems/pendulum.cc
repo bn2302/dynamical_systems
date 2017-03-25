@@ -17,8 +17,6 @@ std::vector<double> Pendulum::operator()(const double time,
                                         const std::vector<double>& state) const
 {
 
-  state;
-
   std::vector<double> d_state (state.size(), 0);
 
   d_state[0] = state[1];

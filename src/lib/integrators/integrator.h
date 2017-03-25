@@ -114,14 +114,13 @@ namespace integration {
   // Adds the elements of a container with a scalar, casts the scalar to the
   // elements of the container
   template<typename System,  typename State>
-  State Integrator<System, State>::multiply_by_scalar(
+  inline State Integrator<System, State>::multiply_by_scalar(
       const State& vec,
       const typename Integrator<System, State>::element_type& scalar) {
-  //
+
     State vec_out;
     std::transform(vec.begin(), vec.end(), std::back_inserter(vec_out),
-        [scalar](typename Integrator<System, State>::element_type d1) {
-          return d1 * scalar;});
+            std::bind1st(std::multiplies<element_type>(), scalar));
 
     return vec_out;
   }
@@ -129,16 +128,13 @@ namespace integration {
 
   // Adds the elements of two containers element wise
   template<typename System,  typename State>
-  State Integrator<System, State>::add_vectors(
+  inline State Integrator<System, State>::add_vectors(
       const State& vec1,
       const State& vec2) {
 
     State vec_out;
     std::transform(vec1.begin(), vec1.end(), vec2.begin(),
-        std::back_inserter(vec_out), [](
-            typename Integrator<System, State>::element_type d1,
-            typename Integrator<System, State>::element_type d2)
-        {return d1 + d2;});
+        std::back_inserter(vec_out), std::plus<element_type>());
 
     return vec_out;
 

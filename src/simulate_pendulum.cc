@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
+#include <memory>
 
 #include "dynamical_system.h"
 #include "pendulum.h"
@@ -16,19 +16,20 @@ int main(int argc, char *argv[])
 {
     std::vector<std::string> args(argv, argv+argc);
 
-    DynamicalSystem* system = nullptr;
-    Integrator<DynamicalSystem, std::vector<double>>* integrator = nullptr;
+    std::unique_ptr<DynamicalSystem> system;
+    std::unique_ptr<Integrator<DynamicalSystem, std::vector<double>>> 
+        integrator;
 
     bool error = false;
 
     if ((args.size() > 2) && (args[1] == "single")) {
 
-      system = new Pendulum();
+      system = std::make_unique<Pendulum>();
 
     }
     else if ((args.size() > 2) && (args[1] == "double")) {
 
-      system = new DoublePendulum();
+      system = std::make_unique<DoublePendulum>();
 
     } else {
 
@@ -39,14 +40,16 @@ int main(int argc, char *argv[])
 
     if ((error == false) && (args.size() > 2) && (args[2] == "euler")) {
 
-      integrator = new Euler<DynamicalSystem, std::vector<double>>(0.1);
+      integrator = std::make_unique<
+          Euler<DynamicalSystem, std::vector<double>>>(0.1);
 
     } else if ((error == false) && (args.size() > 2) && (args[2] == "rk4")) {
 
-      integrator = new RungeKutta4<DynamicalSystem, std::vector<double>>(0.1);
+      integrator = std::make_unique<
+          RungeKutta4<DynamicalSystem, std::vector<double>>>(0.1);
 
     } else {
-      error == true;
+      error = true;
     }
 
     if (error == true) {
@@ -61,9 +64,6 @@ int main(int argc, char *argv[])
     auto data = integrator->integrateNSteps(*system, system->getInitialState(),
         system->getInitialTime(), 100);
     integration::writeIntegrationData(data);
-
-    delete system;
-    delete integrator;
 
     return 0;
 
