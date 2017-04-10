@@ -17,6 +17,7 @@
 
 namespace integration {
 
+
   //
   // Container for the integration data, contains the time and the states,
   // whose type is passed as a template which should be a container. The type
@@ -60,20 +61,20 @@ namespace integration {
 
       virtual ~Integrator() = 0;
 
-      StateTimeSeries integrateNSteps(const System& sys,
-                                      const State& initial_state,
-                                      const element_type& inital_time,
-                                      int n);
+      auto integrateNSteps(const System& sys,
+                           const State& initial_state,
+                           const element_type& inital_time,
+                           int n);
 
     protected:
 
       virtual IntegrationData<State> integrateStep(
               const System& sys, const IntegrationData<State>& data) = 0;
 
-      static State multiply_by_scalar(const State& vec,
+      static auto multiply_by_scalar(const State& vec,
                                       const element_type& scalar);
 
-      static State add_vectors(const State& vec1, const State& vec2);
+      static auto add_vectors(const State& vec1, const State& vec2);
 
   };
 
@@ -88,8 +89,7 @@ namespace integration {
 
   // Integrate the dynamical system
   template<typename System,  typename State>
-  typename Integrator<System, State>::StateTimeSeries
-      Integrator<System, State>::integrateNSteps(
+  auto Integrator<System, State>::integrateNSteps(
           const System& sys,
           const State& initial_state,
           const element_type& inital_time,
@@ -102,7 +102,7 @@ namespace integration {
     store.push_back(data);
 
     for (auto i = 0; i < n; ++i) {
-      IntegrationData<State> new_data = integrateStep(sys, data);
+      auto new_data = integrateStep(sys, data);
       store.push_back(new_data);
       data = new_data;
     }
@@ -114,14 +114,13 @@ namespace integration {
   // Adds the elements of a container with a scalar, casts the scalar to the
   // elements of the container
   template<typename System,  typename State>
-  State Integrator<System, State>::multiply_by_scalar(
+  inline auto Integrator<System, State>::multiply_by_scalar(
       const State& vec,
       const typename Integrator<System, State>::element_type& scalar) {
-  //
+
     State vec_out;
     std::transform(vec.begin(), vec.end(), std::back_inserter(vec_out),
-        [scalar](typename Integrator<System, State>::element_type d1) {
-          return d1 * scalar;});
+            std::bind1st(std::multiplies<element_type>(), scalar));
 
     return vec_out;
   }
@@ -129,16 +128,13 @@ namespace integration {
 
   // Adds the elements of two containers element wise
   template<typename System,  typename State>
-  State Integrator<System, State>::add_vectors(
+  inline auto Integrator<System, State>::add_vectors(
       const State& vec1,
       const State& vec2) {
 
     State vec_out;
     std::transform(vec1.begin(), vec1.end(), vec2.begin(),
-        std::back_inserter(vec_out), [](
-            typename Integrator<System, State>::element_type d1,
-            typename Integrator<System, State>::element_type d2)
-        {return d1 + d2;});
+        std::back_inserter(vec_out), std::plus<element_type>());
 
     return vec_out;
 

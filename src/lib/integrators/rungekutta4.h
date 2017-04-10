@@ -36,9 +36,9 @@ namespace integration {
 
     protected:
 
-      IntegrationData<State> integrateStep(
+       auto integrateStep(
               const System& sys,
-              const IntegrationData<State>& data);
+              const IntegrationData<State>& data) -> IntegrationData<State>;
 
       using Integrator<System, State>::multiply_by_scalar;
 
@@ -62,9 +62,9 @@ namespace integration {
 
 
   template<typename System, typename State>
-  IntegrationData<State> RungeKutta4<System, State>::integrateStep(
+  auto RungeKutta4<System, State>::integrateStep(
           const System& sys,
-          const IntegrationData<State>& data) {
+          const IntegrationData<State>& data) -> IntegrationData<State>{
 
     IntegrationData<State> new_data {data};
 
@@ -82,7 +82,7 @@ namespace integration {
     for (auto it = new_data.state.begin(); it != new_data.state.end(); ++it)
     {
 
-      int index = std::distance(new_data.state.begin(), it);
+      size_t index = std::distance(new_data.state.begin(), it);
 
       *it += step_size/6*k1[index] + step_size/3*k2[index]
         + step_size/3*k3[index] + step_size/6*k4[index];
