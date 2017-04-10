@@ -1,2 +1,6 @@
 Debug/
 Release/
+/.settings/
+/build/
+/.cproject
+/.project
