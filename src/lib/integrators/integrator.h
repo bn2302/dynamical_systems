@@ -115,11 +115,7 @@ namespace integration {
   // Adds the elements of a container with a scalar, casts the scalar to the
   // elements of the container
   template<typename System,  typename State>
-<<<<<<< HEAD
   inline auto Integrator<System, State>::multiply_by_scalar(
-=======
-  inline State Integrator<System, State>::multiply_by_scalar(
->>>>>>> branch 'master' of https://github.com/bn2302/dynamical_systems.git
       const State& vec,
       const typename Integrator<System, State>::element_type& scalar) {
 
@@ -133,11 +129,7 @@ namespace integration {
 
   // Adds the elements of two containers element wise
   template<typename System,  typename State>
-<<<<<<< HEAD
   inline auto Integrator<System, State>::add_vectors(
-=======
-  inline State Integrator<System, State>::add_vectors(
->>>>>>> branch 'master' of https://github.com/bn2302/dynamical_systems.git
       const State& vec1,
       const State& vec2) {
 
