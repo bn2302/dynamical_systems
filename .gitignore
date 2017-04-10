@@ -1,6 +1,12 @@
 Debug/
 Release/
+<<<<<<< HEAD
 /.settings/
 /build/
 /.cproject
 /.project
+=======
+debug/
+release/
+*.swp
+>>>>>>> branch 'master' of https://github.com/bn2302/dynamical_systems.git

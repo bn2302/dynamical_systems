@@ -4,6 +4,7 @@
 
 #include "integrator.h"
 
+<<<<<<< HEAD
 
 using namespace integration;
 
@@ -88,6 +89,8 @@ namespace integration {
 
 #include "integrator.h"
 
+=======
+>>>>>>> branch 'master' of https://github.com/bn2302/dynamical_systems.git
 using namespace integration;
 
 namespace integration {
